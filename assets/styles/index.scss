@@ -29,8 +29,13 @@ row{
     }
 }
 header{
+    display: flex;
+
     .container{
-        //width: 200px;
+        //flex-direction: row;
+        //flex-flow: row;
+        //max-width: 900px;
+        margin: 0;
         //display: flex;
         //flex-direction: row;
     }

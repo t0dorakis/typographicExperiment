@@ -32,7 +32,6 @@ module.exports = {
         new webpack.DefinePlugin({
             IS_DEV: IS_DEV
         }),
-
         new webpack.ProvidePlugin({
             // lodash
             '_': 'lodash'
@@ -49,7 +48,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /(node_modules)/,
+                exclude: /(node_modules|bower_components)/,
                 options: {
                     compact: true
                 }

@@ -4,10 +4,15 @@
 
 // Load application styles
 import 'styles/index.scss';
+// import { load } from 'opentype.js';
 
+var opentype = require('opentype.js');
+var computeLayout = require('opentype-layout');
 // ================================
 // START YOUR APP HERE
 // ================================
+
+//TODO: outsource text
 window.onload = function () {
     var dreckText = "\n—— ——— ——— ——— —— ——— ——— ————— ——— ——— ————— ——— ——— ————— ——— ——— ————— ——— ——— ———\n" +
         "Sehen sie den Dreck? fragte er. Nicht nur in den Ritzen, nicht nur versteckt hinterm\n" +
@@ -16,11 +21,11 @@ window.onload = function () {
         "Dreck und im Grunde mittlerweile eigentlich nur noch gegen den Staub und den\n" +
         "Dreck, wie er ganz offensichtlich ganz von alleine, ohne jedwedes Zutun immer\n" +
         "und immer wieder \u00fcberall liegt. Man wischt. Man wischt ja im Grunde immerzu und\n" +
-        "der Dreck kommt gleich wieder. Ich wische \u00fc̈ber den Flurboden und denke: jetzt ist\n" +
+        "der Dreck kommt gleich wieder. Ich wische \u00fcber den Flurboden und denke: jetzt ist\n" +
         "der Dreck weg... aber wissen Sie... der Dreck ist eigentlich nicht weg, ist nie weg\n" +
         "und selbst wenn wir fest davon \u00fcberzeugt sind, der Dreck sei beseitigt, sei fort, ist\n" +
         "der Dreck noch immer da und vor allem nach k\u00fcrzester Zeit auch wieder\n" +
-        "offensichtlich da. Heute haben wir mehr Dreck als fr\u00fc̈her, auch wenn das alle\n" +
+        "offensichtlich da. Heute haben wir mehr Dreck als fr\u00fcher, auch wenn das alle\n" +
         "abstreiten. Die Leute streiten ja ab, dass wir heute mehr Dreck als fr\u00fcher haben\n" +
         "und behaupten allen Ernstes, der Dreck habe sich verringert, w\u00e4hrenddessen man\n" +
         "zugeben muss, dass der Dreck sich im Grunde nur verschlimmert habe. Sehen sie,\n" +
@@ -28,58 +33,53 @@ window.onload = function () {
         "Lumpen saugt den Dreck gar nicht mehr auf, sondern verwischt ihn bestenfalls,\n" +
         "schlimmstenfalls aber hat der Lumpen auf den Dreck \u00fcberhaupt keine Wirkung. \n" +
         "Wir alle ersticken ja am Dreck, f\u00fchren ein dreckiges Leben im Dreck und in\n" +
-    "Kooperation mit dem Dreck, mit dem wir uns abgefunden haben. Daher erscheint\n" +
-    "uns der Dreck nicht mehr bedeutend. Der Dreck aber ist das absolut bedeutenste\n" +
-    "und war es immer. Ich wische also und wische und der Dreck ist nach der\n" +
-    "k\u00fcrzesten Zeit einfach wieder da... Man erstickt ja im Dreck. Man wischt ja im\n" +
-    "Grunde nur noch gegen den Schmutz an und nennt das Leben. Es wird nichts\n" +
-    "mehr geschaffen, sondern nur wiederhergestellt... aber im Kern verfault alles und\n" +
-    "am Ende hat man nichts. Man k\u00e4mpft ja um die eigene Existenz, also gegen den\n" +
-    "Schmutz aber der Schmutz gewinnt immer und wir f\u00fchren eine f\u00fcrchterliche\n" +
-    "Existenz im Dreck oder versuchen am Dreck vorbei zu leben. Ich kann aber nicht\n" +
-    "am Dreck vorbei leben und lebe dadurch jeden Tag f\u00fcr den Dreck. EIn Leben f\u00fc̈r\n" +
-    "den Schmutz! Das solle ich mir mal vorstellen, sagte er lachend. Wir stehen ja\n" +
-    "morgens fr\u00fch auf f\u00fcr den Dreck. Wischen hier und dort, versuchen uns am Leben\n" +
-    "zu halten, f\u00fcr den Dreck, dass wir ihn wischen können, also im Grunde gegen den\n" +
-    "Dreck. Man lebt nicht mehr f\u00fcr etwas, man lebt im Grunde nur noch gegen etwas\n" +
-    "und dieses Etwas, das ist der Dreck. Man lebt quasi gegen den Dreck an und in\n" +
-    "jeden neuen Tag hinein und immer f\u00fcr den Schmutz in den Ritzen, im Spalt, in den\n" +
-    "Löchern usf. aber auch auf der Fl\u00e4che, sagte er. Im Grunde aber mache man sich\n" +
-    "ja zum Affen f\u00fcr den Dreck. Das sei eine entsetzliche Vorstellung, wie er finde... ein\n" +
-    "Affe des Drecks zu sein. Es stink immer, sagte er. Es stinkt drinnen, es stinkt\n" +
-    "draußen... da könne man sich das L\u00fcften gleich sparen und immer im Kampfe\n" +
-    "gegen den Dreck und immer im \u00dcberlebenskampfe gegen den Erstickungstod.\n" +
-    "Wolle er jede Ecke, jeden Winkel abstauben und das t\u00e4glich, gr\u00fcndlich, br\u00e4uchte er\n" +
-    "am Tage mehr Stunden als einem der Tag \u00dcberhaupt naturgemäß bereitstellt. Die\n" +
-    "Einrichtungen werden ja immer reduzierter. Hier ein Schemel, da noch ein Tisch,\n" +
-    "darauf eine Vase. Das muss heutzutage reichen, wo der Dreck unbesiegbar\n" +
-    "geworden ist. Der Minimalismus und Purismus, das seien ja Gegenmaßnahmen,\n" +
-    "seien Versuche gegen den Dreck... aber der Dreck gewinnt immer. Wo man\n" +
-    "hinkommt, es wimmelt der Schmutz und alles ist mir ekelhaft geworden und ich\n" +
-    "verlasse das Haus kaum noch... habe meine ganze Existenz ins Aufwischen\n" +
-    "geworfen, hinein in den Dreck geworfen, dem Dreck alles gewidmet und geopfert...\n" +
-    "aber auch um zu \u00dcberleben."
-//
-var nameText = " SOEREN MEYERHOFER"
-var titelText = " -DER DRECK-"
-//
-    var TextArray = dreckText.split("\n")
+        "Kooperation mit dem Dreck, mit dem wir uns abgefunden haben. Daher erscheint\n" +
+        "uns der Dreck nicht mehr bedeutend. Der Dreck aber ist das absolut bedeutenste\n" +
+        "und war es immer. Ich wische also und wische und der Dreck ist nach der\n" +
+        "k\u00fcrzesten Zeit einfach wieder da... Man erstickt ja im Dreck. Man wischt ja im\n" +
+        "Grunde nur noch gegen den Schmutz an und nennt das Leben. Es wird nichts\n" +
+        "mehr geschaffen, sondern nur wiederhergestellt... aber im Kern verfault alles und\n" +
+        "am Ende hat man nichts. Man k\u00e4mpft ja um die eigene Existenz, also gegen den\n" +
+        "Schmutz aber der Schmutz gewinnt immer und wir f\u00fchren eine f\u00fcrchterliche\n" +
+        "Existenz im Dreck oder versuchen am Dreck vorbei zu leben. Ich kann aber nicht\n" +
+        "am Dreck vorbei leben und lebe dadurch jeden Tag f\u00fcr den Dreck. EIn Leben f\u00fc̈r\n" +
+        "den Schmutz! Das solle ich mir mal vorstellen, sagte er lachend. Wir stehen ja\n" +
+        "morgens fr\u00fch auf f\u00fcr den Dreck. Wischen hier und dort, versuchen uns am Leben\n" +
+        "zu halten, f\u00fcr den Dreck, dass wir ihn wischen können, also im Grunde gegen den\n" +
+        "Dreck. Man lebt nicht mehr f\u00fcr etwas, man lebt im Grunde nur noch gegen etwas\n" +
+        "und dieses Etwas, das ist der Dreck. Man lebt quasi gegen den Dreck an und in\n" +
+        "jeden neuen Tag hinein und immer f\u00fcr den Schmutz in den Ritzen, im Spalt, in den\n" +
+        "Löchern usf. aber auch auf der Fl\u00e4che, sagte er. Im Grunde aber mache man sich\n" +
+        "ja zum Affen f\u00fcr den Dreck. Das sei eine entsetzliche Vorstellung, wie er finde... ein\n" +
+        "Affe des Drecks zu sein. Es stink immer, sagte er. Es stinkt drinnen, es stinkt\n" +
+        "draußen... da könne man sich das L\u00fcften gleich sparen und immer im Kampfe\n" +
+        "gegen den Dreck und immer im \u00dcberlebenskampfe gegen den Erstickungstod.\n" +
+        "Wolle er jede Ecke, jeden Winkel abstauben und das t\u00e4glich, gr\u00fcndlich, br\u00e4uchte er\n" +
+        "am Tage mehr Stunden als einem der Tag \u00dcberhaupt naturgemäß bereitstellt. Die\n" +
+        "Einrichtungen werden ja immer reduzierter. Hier ein Schemel, da noch ein Tisch,\n" +
+        "darauf eine Vase. Das muss heutzutage reichen, wo der Dreck unbesiegbar\n" +
+        "geworden ist. Der Minimalismus und Purismus, das seien ja Gegenmaßnahmen,\n" +
+        "seien Versuche gegen den Dreck... aber der Dreck gewinnt immer. Wo man\n" +
+        "hinkommt, es wimmelt der Schmutz und alles ist mir ekelhaft geworden und ich\n" +
+        "verlasse das Haus kaum noch... habe meine ganze Existenz ins Aufwischen\n" +
+        "geworfen, hinein in den Dreck geworfen, dem Dreck alles gewidmet und geopfert...\n" +
+        "aber auch um zu \u00dcberleben.\n" +
+        "—— ——— ——— ——— —— ——— ——— ————— ——— ——— ————— ——— ——— ————— ——— ——— ————— ——— "
+    var nameText = " SOEREN MEYERHOFER"
+    var titelText = " -DER DRECK-"
 
-    var width = window.innerWidth / 2
-    var textHeight = window.innerheight / 200;
+    //Split text into Words/Letters
+    var TextArray = dreckText.split("\n")
     var NameArray = nameText.split("")
     var titelArray = titelText.split("")
-//
-//
-//
-//
-//
-// console.log(TextArray)
-//
-// var header = document.createElement('header');
-// header.id = 'header';
-// header.className = 'header';
-// document.getElementsByTagName('body')[0].appendChild(header);
+
+    //TODO: Make Responisve
+    // Viewheight variables
+    var width = window.innerWidth / 2
+    var textHeight = window.innerheight / 200;
+
+    //TODO: did could be done in the index.html
+   //HZML Elemnts
     var sideBar = document.createElement('div');
     sideBar.className = 'sidebar';
     document.getElementsByTagName('row')[0].appendChild(sideBar);
@@ -92,47 +92,14 @@ var titelText = " -DER DRECK-"
     iDiv.className = 'container';
     document.getElementsByTagName('row')[0].appendChild(iDiv);
 
-//
-// var rowDiv = document.createElement('row');
-// rowDiv.className = 'row';
-// iDiv.appendChild(rowDiv);
-// var rowDiv2 = document.createElement('row');
-// rowDiv2.className = 'row2';
-// iDiv.appendChild(rowDiv2);
-//
-// NameArray.forEach(function (value, index){
-//     var innerDiv = document.createElement('div');
-//     innerDiv.className = 'nameGrid';
-// // The variable iDiv is still good... Just append to it.
-//     header.appendChild(innerDiv);
-//     innerDiv.innerHTML = value;
-// })
-//
-// titelArray.forEach(function (value, index){
-//     var innerDiv = document.createElement('div');
-//     innerDiv.className = 'titelGrid';
-// // The variable iDiv is still good... Just append to it.
-//     innerDiv.appendChild(rowDiv);
-//     innerDiv.innerHTML = value;
-// })
-//
-//
-// // Now create and append to iDiv
-// TextArray.forEach(function (value, index){
-//     var innerDiv = document.createElement('div');
-//     innerDiv.className = 'grid';
-// // The variable iDiv is still good... Just append to it.
-//     iDiv.appendChild(innerDiv);
-//     innerDiv.innerHTML = value;
-// })
 
-    var opentype = require('opentype.js');
-    var computeLayout = require('opentype-layout');
-
+    //prototype Function to map values like in Processing
     Number.prototype.map = function (in_min, in_max, out_min, out_max) {
         return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
 
+// Mouse Events listeners
+    //TODO: maybe scroll event listeners would be better = mobile first
 
     document.addEventListener('mousemove', onMouseUpdate, false);
     document.addEventListener('mouseenter', onMouseUpdate, false);
@@ -153,22 +120,16 @@ var titelText = " -DER DRECK-"
 
     var font = "";
 //
-// setInterval(function() {
 
-// console.log(font);
-
-    // var canvas = document.getElementById('canvas');
-    // var ctx = canvas.getContext('2d');
-
+    // snapVariables
     var snapPath = null;
-
-
     var snapStrength = 0;
     var snapDistance = 100;
     var snapX = 0;
     var snapY = 0;
 
 
+    //Those 3 loops create the Canvases
     TextArray.forEach(function (value, index) {
 
         var innerDiv = document.createElement('canvas');
@@ -194,7 +155,7 @@ var titelText = " -DER DRECK-"
         var innerDiv = document.createElement('canvas');
         innerDiv.className = 'headerSnap';
         innerDiv.id = "head" + index;
-        innerDiv.setAttribute('width', '' + width / 5  + '');
+        innerDiv.setAttribute('width', '' + width / 7  + '');
         innerDiv.setAttribute('height', '220px');
         // The variable iDiv is still good... Just append to it.
         headBar.appendChild(innerDiv);
@@ -215,7 +176,7 @@ var titelText = " -DER DRECK-"
             return yM;
         }
 
-        var limitStrength = getMouseX().map(0, 2000, -50, 20);
+        var limitStrength = getMouseX().map(0, 2500, -50, 30);
         var limitDistance = getMouseY().map(0, 2000, -50, 90);
 
         snapStrength = limitStrength;

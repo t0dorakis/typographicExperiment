@@ -6,12 +6,13 @@
   "license": "MIT",
   "homepage": "https://theodorhillmann.de",
   "scripts": {
+    "start": "cross-env NODE_ENV=dev webpack-dev-server --progress --config webpack.config.dev.js",
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --config webpack.config.dev.js",
     "build": "webpack -p --progress --config webpack.config.build.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://cvgellhorn@github.com/cvgellhorn/webpack-boilerplate.git"
+    "url": ""
   },
   "dependencies": {
     "lodash": "^4.17.4",
