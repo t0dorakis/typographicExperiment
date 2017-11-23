@@ -1,0 +1,52 @@
+// Apply a natural box layout model to all elements
+// but allowing components to change
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    padding-left: 20px;
+}
+.grid{
+    font: "Pragmata Pro";
+}
+.snapGrid{
+    //height:400px;
+    //width:400px;
+}
+
+row{
+    display: flex;
+    flex-direction: row;
+    .container{
+        display: flex;
+        flex-direction: column;
+        padding: 0px 20px 0px 20px;
+    }
+}
+header{
+    .container{
+        //width: 200px;
+        //display: flex;
+        //flex-direction: row;
+    }
+}
+.sideSnap{
+    //position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar{
+    //position: fixed;
+}
+canvas#head0{
+    display: none;
+}
+canvas#inner0{
+    display: none;
+
+}
