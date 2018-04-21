@@ -6,8 +6,10 @@
 import 'styles/index.scss';
 // import { load } from 'opentype.js';
 
-var opentype = require('opentype.js');
-var computeLayout = require('opentype-layout');
+// var opentype = require('opentype.js');
+// var computeLayout = require('opentype-layout');
+
+import * as opentype from '../node_modules/opentype.js/dist/opentype.js';
 // ================================
 // START YOUR APP HERE
 // ================================
@@ -18,8 +20,8 @@ window.onload = function () {
         "Sehen sie den Dreck? fragte er. Nicht nur in den Ritzen, nicht nur versteckt hinterm\n" +
         "Schrank usf. sozusagen nicht nur im Geheimen. Nein, ganz offensichtlich liegt er\n" +
         "hier... in all seiner grausamen Unendlichkeit. Wir k\u00e4mpfen ja seit je her gegen den\n" +
-        "Dreck und im Grunde mittlerweile eigentlich nur noch gegen den Staub und den\n" +
-        "Dreck, wie er ganz offensichtlich ganz von alleine, ohne jedwedes Zutun immer\n" +
+        "Dreck und im Grunde mittlerweile eigentlich nur noch gegen den Staub und den Dreck,\n" +
+        "wie er ganz offensichtlich ganz von alleine, ohne jedwedes Zutun immer\n" +
         "und immer wieder \u00fcberall liegt. Man wischt. Man wischt ja im Grunde immerzu und\n" +
         "der Dreck kommt gleich wieder. Ich wische \u00fcber den Flurboden und denke: jetzt ist\n" +
         "der Dreck weg... aber wissen Sie... der Dreck ist eigentlich nicht weg, ist nie weg\n" +
@@ -32,7 +34,8 @@ window.onload = function () {
         "ich wische hier \u00fcber den Tisch und verschmiere den Dreck eigentlich nur. Der\n" +
         "Lumpen saugt den Dreck gar nicht mehr auf, sondern verwischt ihn bestenfalls,\n" +
         "schlimmstenfalls aber hat der Lumpen auf den Dreck \u00fcberhaupt keine Wirkung. \n" +
-        "Wir alle ersticken ja am Dreck, f\u00fchren ein dreckiges Leben im Dreck und in\n" +
+        "\n" +
+        "     Wir alle ersticken ja am Dreck, f\u00fchren ein dreckiges Leben im Dreck und in\n" +
         "Kooperation mit dem Dreck, mit dem wir uns abgefunden haben. Daher erscheint\n" +
         "uns der Dreck nicht mehr bedeutend. Der Dreck aber ist das absolut bedeutenste\n" +
         "und war es immer. Ich wische also und wische und der Dreck ist nach der\n" +
@@ -50,9 +53,9 @@ window.onload = function () {
         "und dieses Etwas, das ist der Dreck. Man lebt quasi gegen den Dreck an und in\n" +
         "jeden neuen Tag hinein und immer f\u00fcr den Schmutz in den Ritzen, im Spalt, in den\n" +
         "Löchern usf. aber auch auf der Fl\u00e4che, sagte er. Im Grunde aber mache man sich\n" +
-        "ja zum Affen f\u00fcr den Dreck. Das sei eine entsetzliche Vorstellung, wie er finde... ein\n" +
-        "Affe des Drecks zu sein. Es stink immer, sagte er. Es stinkt drinnen, es stinkt\n" +
-        "draußen... da könne man sich das L\u00fcften gleich sparen und immer im Kampfe\n" +
+        "ja zum Affen f\u00fcr den Dreck. Das sei eine entsetzliche Vorstellung, wie er finde...\n" +
+        "ein Affe des Drecks zu sein. Es stink immer, sagte er. Es stinkt drinnen, es\n" +
+        "stinkt draußen... da könne man sich das L\u00fcften gleich sparen und immer im Kampfe\n" +
         "gegen den Dreck und immer im \u00dcberlebenskampfe gegen den Erstickungstod.\n" +
         "Wolle er jede Ecke, jeden Winkel abstauben und das t\u00e4glich, gr\u00fcndlich, br\u00e4uchte er\n" +
         "am Tage mehr Stunden als einem der Tag \u00dcberhaupt naturgemäß bereitstellt. Die\n" +
