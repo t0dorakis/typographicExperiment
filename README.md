@@ -1,6 +1,6 @@
 Typographic Experiment with Opentype
 
->  A small visualisation, with opentype SVG mutations, of a short story by Sören Meihofer
+>  A small visualisation, with opentype SVG mutations, of a short story by Sören Meierhofer
 
 ## Requirements
 You only need <b>node.js</b> pre-installed and you’re good to go.
