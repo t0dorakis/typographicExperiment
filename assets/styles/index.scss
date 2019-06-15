@@ -19,6 +19,38 @@ body{
     //width:400px;
 }
 
+$sideRow: 100px;
+.wrapper-outside {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    display: flex;
+    #headline {
+        width: 100%;
+        padding-left: $sideRow;
+        canvas {
+            margin-left: -22px;
+        }
+    }
+    .wrapper-inside {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+        row {
+            width:  calc(100% - #{$sideRow});
+            padding-top: 60px;
+        }
+        #artist {
+            canvas {
+                margin-left: 24px;
+            }
+            width: $sideRow;
+            height: 100%;
+        }
+    }
+}
+
 row{
     display: flex;
     flex-direction: row;
