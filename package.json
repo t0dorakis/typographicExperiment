@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "copy-webpack-plugin": "^4.3.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "opentype-layout": "^1.1.0",
     "opentype.js": "^0.7.3"
   },
